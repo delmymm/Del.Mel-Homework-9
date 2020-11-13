@@ -5,17 +5,17 @@ inquirer
   .prompt([
     {
       type: 'input',
-      message: 'What is your project title name?',
+      message: 'What is the project title?',
       name: 'title',
     },
     {
       type: 'input',
-      message: 'Describe your project',
+      message: 'Describe your project.',
       name: 'description',
     },
     {
       type: 'input',
-      message: 'How to install project?',
+      message: 'How to install your project?',
       name: 'installation',
     },
     {
@@ -34,26 +34,42 @@ inquirer
       name: 'tests',
     },
     {
-      type: 'checkbox',
-      message: 'Select a licencse for this project.',
-      name: 'username'
+      type: 'list',
+      message: 'Select a license for this project.',
+      name: 'license',
+      choices: [
+        'MIT License',
+        'Apache License 2.0',
+        'Boost Software License 1.0',
+      ]
     },
     {
       type: 'input',
       message: 'What is your github username?',
       name: 'username'
-    },
-    {
-      type: 'input',
-      message: 'What is your github username?',
-      name: 'github'
     },
     {
       type: 'input',
       message: 'What is the URL to your github profile?',
       name: 'email',
     }
-  ])
-  .then((response) =>
-    console.log(response)
-  );
+  ]).then(function (response) {
+    let generateMarkdown = `# ${response.title}\n
+    ${response.description}\n
+    ${response.installation}\n
+    ${response.usage}\n
+    ${response.contribution}\n
+    ${response.tests}\n
+    ${response.license}\n
+    ${response.username}\n
+    ${response.email}\n
+    `
+    writeToFile('README.md', generateMarkdown)
+  })
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) => {
+    if (err) {
+      return;
+    };
+  });
+}; 
