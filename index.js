@@ -52,7 +52,7 @@ inquirer
       type: 'input',
       message: 'What is the URL to your github profile?',
       name: 'email',
-    }
+    },
   ]).then(function (response) {
     let generateMarkdown = `# ${response.title}\n
     ${response.description}\n
@@ -60,12 +60,12 @@ inquirer
     ${response.usage}\n
     ${response.contribution}\n
     ${response.tests}\n
-    ${response.license}\n
+    ![](https://img.shields.io/badge/license-${response.license}-blue)
     ${response.username}\n
     ${response.email}\n
     `
     writeToFile('README.md', generateMarkdown)
-  })
+  })  
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, (err) => {
     if (err) {
