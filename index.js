@@ -38,9 +38,9 @@ inquirer
       message: 'Select a license for this project.',
       name: 'license',
       choices: [
-        'MIT License',
-        'Apache License 2.0',
-        'Boost Software License 1.0',
+        'MIT ',
+        'Apache',
+        'Boost',
       ]
     },
     {
@@ -60,7 +60,7 @@ inquirer
     ${response.usage}\n
     ${response.contribution}\n
     ${response.tests}\n
-    ![](https://img.shields.io/badge/license-${response.license}-blue)
+    ![](https://img.shields.io/badge/license-${response.license}-blue.svg)
     ${response.username}\n
     ${response.email}\n
     `
